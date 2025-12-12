@@ -102,6 +102,7 @@ function displayQuestion() {
             button.querySelector('.answer-text').textContent = question.answers[answer];
             button.classList.remove('selected', 'correct', 'incorrect');
             button.disabled = false;
+            button.blur(); // ИСПРАВЛЕНИЕ: Убираем focus с кнопки
         });
         
     } else if (question.type === 'text') {
@@ -234,6 +235,10 @@ function nextQuestion() {
         finishTest();
     } else {
         // Следующий вопрос
+        // ИСПРАВЛЕНИЕ: Убираем фокус со всех элементов
+        if (document.activeElement) {
+            document.activeElement.blur();
+        }
         displayQuestion();
     }
 }

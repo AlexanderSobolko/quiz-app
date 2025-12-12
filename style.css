@@ -319,12 +319,34 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
+    /* ИСПРАВЛЕНИЕ: Убираем автоматический фокус на мобильных */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.answer-button:focus {
+    /* Убираем желтую обводку при фокусе */
+    outline: none;
+}
+
+.answer-button:active {
+    transform: scale(0.98);
 }
 
 .answer-button:hover {
     border-color: var(--primary-gold);
     transform: translateX(10px);
     background: var(--navy);
+}
+
+.answer-button:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.answer-button:disabled:hover {
+    transform: none;
+    background: var(--deep-blue);
 }
 
 .answer-button.selected {
