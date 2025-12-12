@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты викторины</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="container">
+        <div class="result-screen">
+            <div class="result-icon" id="resultIcon">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="55" fill="none" stroke="url(#resultGradient)" stroke-width="4"/>
+                    <defs>
+                        <linearGradient id="resultGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffd700"/>
+                            <stop offset="100%" style="stop-color:#ff8c00"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="result-emoji" id="resultEmoji">🎉</div>
+            </div>
+
+            <h1 class="result-title" id="resultTitle">Поздравляем!</h1>
+            
+            <div class="final-score">
+                <div class="score-label">Ваш результат</div>
+                <div class="score-big" id="finalScore">8.5</div>
+                <div class="score-sublabel">из 10 возможных баллов</div>
+            </div>
+
+            <div class="result-details">
+                <div class="detail-item">
+                    <span class="detail-label">Правильных ответов:</span>
+                    <span class="detail-value" id="correctAnswers">13 из 16</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Точность:</span>
+                    <span class="detail-value" id="accuracy">81%</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Бонус за участие:</span>
+                    <span class="detail-value">+2 балла</span>
+                </div>
+            </div>
+
+            <div class="result-message" id="resultMessage">
+                Отличный результат! Вы хорошо знаете историю Беларуси.
+            </div>
+
+            <div class="result-actions">
+                <button class="action-button primary" onclick="window.location.href='index.html'">
+                    Пройти другой тест
+                </button>
+                <button class="action-button secondary" onclick="showAnswers()">
+                    Посмотреть ответы
+                </button>
+            </div>
+
+            <!-- Список ответов (скрытый по умолчанию) -->
+            <div class="answers-review" id="answersReview" style="display: none;">
+                <h3>Ваши ответы:</h3>
+                <div id="answersReviewList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="result.js"></script>
+</body>
+</html>

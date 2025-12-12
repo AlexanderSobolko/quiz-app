@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина - Вопрос</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="quiz-body">
+    <div class="stars"></div>
+    
+    <div class="quiz-container">
+        <!-- Прогресс бар -->
+        <div class="progress-container">
+            <div class="score-display">
+                <span class="score-label">Текущий счет:</span>
+                <span class="score-value" id="currentScore">2.0</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-counter">
+                <span id="currentQuestion">1</span> / 16
+            </div>
+        </div>
+
+        <!-- Область вопроса -->
+        <div class="question-area">
+            <div class="question-card">
+                <h2 class="question-text" id="questionText">Загрузка вопроса...</h2>
+                
+                <!-- Варианты ответов (для закрытых вопросов) -->
+                <div class="answers-grid" id="answersGrid">
+                    <button class="answer-button" data-answer="a">
+                        <span class="answer-letter">А</span>
+                        <span class="answer-text">Вариант А</span>
+                    </button>
+                    <button class="answer-button" data-answer="b">
+                        <span class="answer-letter">Б</span>
+                        <span class="answer-text">Вариант Б</span>
+                    </button>
+                    <button class="answer-button" data-answer="c">
+                        <span class="answer-letter">В</span>
+                        <span class="answer-text">Вариант В</span>
+                    </button>
+                    <button class="answer-button" data-answer="d">
+                        <span class="answer-letter">Г</span>
+                        <span class="answer-text">Вариант Г</span>
+                    </button>
+                </div>
+
+                <!-- Поле для ввода (для открытых вопросов) -->
+                <div class="text-answer-container" id="textAnswerContainer" style="display: none;">
+                    <input type="text" class="text-answer-input" id="textAnswerInput" placeholder="Введите ваш ответ...">
+                    <button class="submit-answer-button" id="submitTextAnswer">Ответить</button>
+                </div>
+            </div>
+
+            <!-- Индикатор правильности ответа -->
+            <div class="answer-feedback" id="answerFeedback"></div>
+        </div>
+
+        <!-- Лесенка баллов (как в миллионере) -->
+        <div class="score-ladder">
+            <div class="ladder-title">Таблица баллов</div>
+            <div class="ladder-items" id="ladderItems"></div>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>

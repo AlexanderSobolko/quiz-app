@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Добавить тест</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Админ-панель</h1>
+            <button class="back-button" onclick="window.location.href='index.html'">← На главную</button>
+        </div>
+
+        <div class="admin-content">
+            <div class="test-form">
+                <h2>Добавить новый тест</h2>
+                
+                <div class="form-group">
+                    <label for="testTitle">Название теста:</label>
+                    <input type="text" id="testTitle" placeholder="Например: История Беларуси XVI-XVIII вв">
+                </div>
+
+                <div class="form-group">
+                    <label for="testDescription">Описание:</label>
+                    <textarea id="testDescription" rows="3" placeholder="Краткое описание теста"></textarea>
+                </div>
+
+                <div class="questions-container" id="questionsContainer">
+                    <h3>Вопросы (добавьте 16 вопросов)</h3>
+                    <div class="questions-count">Добавлено: <span id="questionsCount">0</span> / 16</div>
+                    
+                    <!-- Шаблон для добавления вопроса -->
+                    <div class="question-form-template">
+                        <div class="question-form-item">
+                            <div class="question-form-header">
+                                <h4>Вопрос <span class="question-number">1</span></h4>
+                                <button class="remove-question-btn" onclick="removeQuestion(this)">🗑️</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Текст вопроса:</label>
+                                <textarea class="question-text-input" rows="2" placeholder="Введите текст вопроса"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Тип вопроса:</label>
+                                <select class="question-type-select" onchange="toggleAnswerType(this)">
+                                    <option value="multiple">С вариантами ответов (а, б, в, г)</option>
+                                    <option value="text">Текстовый ответ</option>
+                                </select>
+                            </div>
+
+                            <!-- Варианты ответов (для закрытых вопросов) -->
+                            <div class="multiple-answers-group">
+                                <div class="form-group">
+                                    <label>Вариант А:</label>
+                                    <input type="text" class="answer-a" placeholder="Текст варианта А">
+                                </div>
+                                <div class="form-group">
+                                    <label>Вариант Б:</label>
+                                    <input type="text" class="answer-b" placeholder="Текст варианта Б">
+                                </div>
+                                <div class="form-group">
+                                    <label>Вариант В:</label>
+                                    <input type="text" class="answer-c" placeholder="Текст варианта В">
+                                </div>
+                                <div class="form-group">
+                                    <label>Вариант Г:</label>
+                                    <input type="text" class="answer-d" placeholder="Текст варианта Г">
+                                </div>
+                                <div class="form-group">
+                                    <label>Правильный ответ:</label>
+                                    <select class="correct-answer-select">
+                                        <option value="a">А</option>
+                                        <option value="b">Б</option>
+                                        <option value="c">В</option>
+                                        <option value="d">Г</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Текстовый ответ (для открытых вопросов) -->
+                            <div class="text-answer-group" style="display: none;">
+                                <div class="form-group">
+                                    <label>Правильные варианты ответа (через запятую):</label>
+                                    <input type="text" class="correct-text-answers" placeholder="Например: Постоянная Рада, Рада">
+                                    <small>Укажите все возможные правильные варианты через запятую</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-question-btn" onclick="addQuestion()">+ Добавить вопрос</button>
+
+                <div class="form-actions">
+                    <button class="save-test-btn" onclick="saveTest()">💾 Сохранить тест</button>
+                    <button class="preview-test-btn" onclick="previewTest()">👁️ Предпросмотр</button>
+                </div>
+            </div>
+
+            <!-- Список существующих тестов -->
+            <div class="tests-list">
+                <h2>Существующие тесты</h2>
+                <div id="testsList" class="tests-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Историческая Викторина</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="url(#goldGradient)" stroke-width="3"/>
+                        <text x="50" y="60" text-anchor="middle" fill="url(#goldGradient)" font-size="40" font-weight="bold">?</text>
+                        <defs>
+                            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700"/>
+                                <stop offset="100%" style="stop-color:#ff8c00"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="title">Историческая<br>Викторина</h1>
+            </div>
+            
+            <div class="intro-text">
+                <p class="bonus-text">🎁 Вы уже получили <span class="bonus-points">2 балла</span> за то, что пришли на тест!</p>
+                <p class="description">Пройдите викторину по истории Беларуси и получите дополнительные баллы за правильные ответы</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">вопросов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">максимум баллов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0.5</div>
+                    <div class="stat-label">балл за ответ</div>
+                </div>
+            </div>
+
+            <button class="start-button" id="startButton">
+                <span>Начать тест</span>
+                <div class="button-shine"></div>
+            </button>
+
+            <div class="user-stats" id="userStats" style="display: none;">
+                <p>Пройдено тестов: <span id="testsCompleted">0</span></p>
+                <p>Средний балл: <span id="avgScore">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
