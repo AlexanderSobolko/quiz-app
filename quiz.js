@@ -1,4 +1,4 @@
-// Страница викторины - quiz.js
+// Страница викторины - quiz.js (ИСПРАВЛЕННАЯ ВЕРСИЯ)
 
 let currentTest = null;
 let currentQuestionIndex = 0;
@@ -29,6 +29,11 @@ async function loadTest() {
             window.location.href = 'index.html';
             return;
         }
+        
+        // ИСПРАВЛЕНИЕ 1: Сортируем вопросы - сначала закрытые, потом открытые
+        const multipleChoiceQuestions = currentTest.questions.filter(q => q.type === 'multiple');
+        const textQuestions = currentTest.questions.filter(q => q.type === 'text');
+        currentTest.questions = [...multipleChoiceQuestions, ...textQuestions];
         
         // Инициализируем массив ответов
         userAnswers = new Array(currentTest.questions.length).fill(null);
@@ -103,8 +108,15 @@ function displayQuestion() {
         // Текстовый вопрос
         document.getElementById('answersGrid').style.display = 'none';
         document.getElementById('textAnswerContainer').style.display = 'block';
-        document.getElementById('textAnswerInput').value = '';
-        document.getElementById('textAnswerInput').focus();
+        
+        // ИСПРАВЛЕНИЕ 2: Сбрасываем состояние поля ввода
+        const textInput = document.getElementById('textAnswerInput');
+        const submitButton = document.getElementById('submitTextAnswer');
+        
+        textInput.value = '';
+        textInput.disabled = false; // Разблокируем поле
+        submitButton.disabled = false; // Разблокируем кнопку
+        textInput.focus();
     }
     
     // Обновляем лесенку
@@ -176,6 +188,8 @@ function checkAnswer(userAnswer, button = null) {
         );
         
         showFeedback(isCorrect, question.correctAnswers[0]);
+        
+        // Блокируем поле ввода и кнопку ТОЛЬКО для текущего вопроса
         document.getElementById('submitTextAnswer').disabled = true;
         document.getElementById('textAnswerInput').disabled = true;
     }
